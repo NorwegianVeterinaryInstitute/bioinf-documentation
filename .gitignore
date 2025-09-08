@@ -1,0 +1,23 @@
+# R
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user
+.Rproj.user/
+
+# RStudio project files
+*.Rproj
+
+# Quarto & knitr caches
+*_cache/
+*.knit.md
+*.utf8.md
+
+# Quarto output
+/_book/        # rendered book
+/_site/        # rendered site
+/.quarto/      # internal Quarto cache
+
+# OS-specific
+.DS_Store
+Thumbs.db
