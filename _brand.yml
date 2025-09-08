@@ -1,0 +1,87 @@
+meta:
+  name:
+    short: NVI
+    full: Norwegian Veterinary Institute
+  link:
+    home: https://www.vetinst.no
+    linkedin: https://www.linkedin.com/company/norwegian-veterinary-institute
+
+logo:
+  images:
+    english: images/logos/vetinst-logo-eng.svg
+    english-white: images/logos/vetinst-logo-neg-eng.svg
+    favicon-16x16: images/favicon/favicon-16x16.png
+    favicon-32x32: images/favicon/favicon-32x32.png
+    favicon-96x96: images/favicon/favicon-96x96.png
+  small: favicon-32x32
+  medium:
+    light: english
+    dark: english-white
+  large: english
+
+color:
+  palette:
+    black: "#091A3E"
+    white: "#F7FDFF"
+    air: "#D7F4FF"
+    dark_air: "#95D9F3"
+    earth: "#59CD8B"
+    light_earth: "#BCEED1"
+    water: "#1C4FB9"
+    light_water: "#C7D9FF"
+    dark_food: "#FF5447"
+    light_food: "#FFC6C2"
+  foreground: black
+  background: white
+  primary: black
+  secondary: black
+  tertiary: air
+  warning: light_food
+  danger: dark_food
+
+typography:
+  fonts:
+    - family: Hanken Grotesk
+      source: bunny
+      weight: [400, 500, 700]
+      style: [normal, italic]
+  base:
+    family: Hanken Grotesk
+    weight: 400
+    size: 16px
+    line-height: 1.5
+  headings:
+    family: Hanken Grotesk
+    weight: 500
+    style: normal
+    line-height: 1.2
+    color: primary
+  monospace:
+    family: Consolas
+    weight: 400
+    size: 0.9em
+  monospace-block: 
+    family: Consolas
+    weight: 400
+    size: 0.9em
+    background-color: air
+  monospace-inline: 
+    family: Consolas
+    weight: 400
+    size: 0.9em
+    color: black
+    background-color: air
+  link:
+    weight: 600
+    color: water
+    decoration: underline
+
+defaults:
+  bootstrap:
+    defaults:
+      navbar-bg: "#D7F4FF"
+      sidebar-bg: "#D7F4FF"
+    rules: |
+      body {
+        font-family: 'Hanken Grotesk', sans-serif;
+      }

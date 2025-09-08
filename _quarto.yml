@@ -1,0 +1,20 @@
+project:
+  type: book
+
+book:
+  title: "Bioinformatics Documentation"
+  chapters:
+    - index.qmd
+    - part: "Part_1"
+      chapters:
+      - quarto_files/Part_1/dummy_document_1.qmd
+    - part: "Part_2"
+      chapters:
+      - quarto_files/Part_2/dummy_document_2.qmd
+    - quarto_files/contributing.qmd
+
+format:
+  html:
+    theme: cosmo
+
+editor: visual

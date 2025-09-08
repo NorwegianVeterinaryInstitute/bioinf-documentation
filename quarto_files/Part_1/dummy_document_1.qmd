@@ -1,0 +1,27 @@
+---
+title: "Dummy Document 1"
+author: "Name of Author"
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-depth: 2
+    number-sections: true
+    number-depth: 3
+editor: visual
+---
+
+# Introduction
+
+This is a **tiny Quarto demo**.\
+It has a section, some text, and even a code block.
+
+# Example Code
+
+Here’s an R code chunk:
+
+```{r}
+# A small calculation
+x <- 1:5
+mean(x)
+```
