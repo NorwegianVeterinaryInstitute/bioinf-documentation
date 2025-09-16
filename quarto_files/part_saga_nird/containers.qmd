@@ -1,0 +1,215 @@
+---
+title: "Containers"
+author: "Eve Fiskebeck, George Marselis"
+last-modified: 2025-09-16
+
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-depth: 2
+    number-sections: true
+    number-depth: 3
+editor: visual
+---
+
+# Using containers in SAGA
+
+
+## What is a container ?
+
+
+**"Containers is a way to deliver ready-to-run software that does not depend on the system"**.
+Containers are a bundle of: an operative system, software, libraries and dependencies ... everything you will need to run a software. 
+ 
+Once, you have done a minimal configuration in your `~/.bashrc`, you will be able to use containers without any further setup. You will just be able to load a container and run the software.
+
+There are different types of container formats and container management engines (apptainer, docker, singularity, ...). 
+
+
+**Apptainer is used in SAGA.** 
+There is some inter-compatibilities between container systems, so it is usually possible to transform containers so they can be used on SAGA.
+
+## Where to find containers ?
+
+-   The tool you want to use might have they own container images. For example  [BUSCO](https://busco.ezlab.org/) provide  Docker containers
+-   [Biocontainers](https://quay.io/repository/biocontainers) A community building containers[^1]
+-   [Docker Hub](https://hub.docker.com/), Eg. account of "unknown people"[^2]
+
+[^1]: Community that builds containers <https://biocontainers.pro/> With their [github repository](https://github.com/BioContainers/containers) where you can find the recipes for building
+
+[^2]: [Like me](https://hub.docker.com/search?q=evezeyl); Not necessary all functional nor secure...
+
+## Initial setup to be able to use containers easily
+
+Some initial configuration in your `~/.bashrc` (in your home-home directory) will greatly facilitate further use of containers in SAGA. 
+
+- configuration of the cache (the directory used to build images of containers) and the storage location of images: add those lines to `~/.bashrc`
+
+```{.bash}
+# go to your home directory and edit .bashrc
+cd ~
+nano .bashrc
+```
+
+
+```{.bash}
+# apptainer 
+export APPTAINER_CACHEDIR=${USERWORK}/images
+export APPTAINER_LIBRARYDIR=${USERWORK}/images
+export APPTAINER_HOME_MOUNT=true # Eventually
+```
+
+
+- if you are going to use **Nextflow pipelines**, add those lines also.
+
+```{.bash}
+# apptainer in nextflow
+export NXF_APPTAINER_CACHEDIR=${USERWORK}/images
+export NXF_APPTAINER_LIBRARYDIR=${USERWORK}/images
+
+# This is usefull for nextflow with nf-core setup
+export NXF_SINGULARITY_CACHEDIR=${USERWORK}/images
+export NXF_SINGULARITY_LIBRARYDIR=${USERWORK}/images
+```
+
+Do not forget to write the changes. Then you need to source the .bashrc (you can also do that by login off and on again to SAGA)
+
+
+- Then we need to define directories that will be mounted (or binded) in the containers that you will be using. Those directories will become accessible when you use the container. This is necessary so you can access the files in the SAGA file system. 
+
+This simple setup will bind the directories in the same structure than SAGA, making it easier to access your files. 
+
+Add also those lines to `~/.bashrc` (do not forget to change <username> with your username)
+```{.bash}
+# You can bind several directory separated by comas
+export APPTAINER_BIND="$USERWORK,/cluster/projects/nn9305k/active/<username>,/cluster/projects/nn9305k/db_flatfiles"
+
+# For nextflow
+export NXF_APPTAINER_HOME_MOUNT=true
+```
+
+## How to use containers in SAGA?
+
+### Pull a container (one time)
+
+To make a container available for use, you need to build an image when "pulling the container".  It must be on the **login node** because it requires internet access which you do not have on the compute nodes. 
+
+```{.bash}
+cd $USERWORK/images
+apptainer pull busco.sif docker://ezlabgva/busco:v5.7.1_cv1
+```
+
+### Interactive use of containers 
+
+  - Ask interactive resources
+  - Set an environment variable referring to the path of your image and run.
+
+Example :
+
+```{.bash} 
+# request interactive queue
+srun --account=nn9305k --mem-per-cpu=8G --cpus-per-task=1 --qos=devel --time=0:10:00 --pty bash -i
+
+# set variables incl. path to image
+IMG="/cluster/work/users/evezeyl/images/busco.sif"
+
+# run container
+apptainer shell $IMG
+
+# do something
+
+# exit the container
+exit 
+
+# to chancel your job 
+scancel <jobid> 
+```
+
+
+Note the prompt, it is different than the SAGA prompt.
+
+Then, you can use the container, by calling the program you want to use. Example: 
+
+```{.bash}     
+ls
+busco --list-datasets > 2024-04-29_list_datasets_busco.txt
+```
+- you can find an example for using quiime2 [here](quiime2_docker.md)
+
+### Using containers in Slurm scripts
+
+
+Add `apptainer exec $IMG` before the command you want to run
+ 
+``` bash
+apptainer exec $IMG  <command>
+```
+
+Example:
+
+``` bash
+IMG="/cluster/work/users/evezeyl/images/masurca.sif"
+apptainer exec $IMG  masurca -t 4 -i ${R1},${R2} -r ${long_read}  2>&1 | tee masurca_test.log
+```
+ 
+## Some Advantages / disadvantages of containers
+
+-   Full reproducibility (OS + software and dependencies)
+-   Takes storage space : your images might be deleted if SAGA is full 
+-   Easly to use ? (I think so, when you have done the setup and did it once)
+-   You are sure that you can use the same version // But you will need to pull a new update if you want the latest version. 
+-   It might be some delay before a container is build at the latest version
+-   Sometimes containers do not work (well, not to different), you might have to try several builds
+
+
+## More advanced usage of containers
+
+### Mounting custom paths
+
+- This can for example be used to bind existing database paths to the container you want to use
+
+
+Bind the full path starting from root: 
+
+```{.bash}
+apptainer exec --bind </saga_path>:</container_path> my_container.sif <command>
+```
+
+
+![[../../images/part_saga_nird/container_bind.png]]
+
+
+Going further : 
+- [see documentation in apptainer](https://apptainer.org/docs/user/main/bind_paths_and_mounts.html)
+
+### Build own containers ? 
+
+- Warning: it can be time consuming (first search if there is already a container existing)
+- A recipe for building is written in a file (definition file).
+
+[See: apptainer documentation](https://apptainer.org/docs/user/main/cli/apptainer_build.html)
+
+- The recipe is specific to the language of the container type you want use for the container
+creation. Creating containers with Docker will require you to have a computer with root
+privileges (or fakeroot). While it should be possible to create containers with
+Singularity syntax or Apptainer (very close to Singularity) without root privileges. 
+
+### Documentation and external ressources
+
+Most common types of containers:
+
+-   [Apptainer](https://apptainer.org/)
+-   [Docker](https://docs.docker.com/)
+-   [Singularity](https://docs.sylabs.io/guides/3.5/user-guide/introduction.html)
+
+...
+
+External ressources:
+
+- An introduction on containers : [BioContainers](https://biocontainers-edu.readthedocs.io/en/latest/)
+
+
+Tutorials to create containers:
+
+-  Reproducible Computational Environments Using Containers: Introduction to Docker, A  [Carpentries Incubator lesson](https://carpentries-incubator.github.io/docker-introduction/)

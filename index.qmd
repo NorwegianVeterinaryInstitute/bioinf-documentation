@@ -17,27 +17,24 @@ This quarto book contains the following:
 
 ## External tutorials
 
-1. [External tutorials](quarto_files/part_external/external_tutorials.qmd)
-1. [Carpentriesh Unix shell lesson]
-2. [Carpentries R tutorial]
-3. [Incubator lesson]
-4. [Carpentries metagenomics]
-5. [Regex tutorial]
-6. [Sigma2 documentation]
+1.  [External tutorials](quarto_files/part_external/external_tutorials.qmd)
+2.  \[Carpentriesh Unix shell lesson\]
+3.  \[Carpentries R tutorial\]
+4.  \[Incubator lesson\]
+5.  \[Carpentries metagenomics\]
+6.  \[Regex tutorial\]
+7.  \[Sigma2 documentation\]
 
 ## Saga and NIRD usage
 
-1. [Account on Saga/NIRD](quarto_files/part_saga_nird/external_tutorials.qmd)
-2. [Saga and NIRD data architecture][quarto_files/part_saga_nird/data_architecture.qmd]
-3. [First time on Saga]][quarto_files/part_saga_nird/first_time.qmd]
-4. [Logging in to Saga/NIRD]][quarto_files/part_saga_nird/login.qmd]
+1.  [Account on Saga/NIRD](quarto_files/part_saga_nird/external_tutorials.qmd)
+2.  \[Saga and NIRD data architecture\]\[quarto_files/part_saga_nird/data_architecture.qmd\]
+3.  \[First time on Saga\]\]\[quarto_files/part_saga_nird/first_time.qmd\]
+4.  \[Logging in to Saga/NIRD\]\]\[quarto_files/part_saga_nird/login.qmd\]
 
+5. [Containers](quarto_files/part_saga_nird/containers.qmd)
 
 ## VIGAS usage
-
-
-
-
 
 
 

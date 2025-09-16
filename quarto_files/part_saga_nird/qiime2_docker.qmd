@@ -1,0 +1,77 @@
+---
+title: "Containers"
+author: "Eve Fiskebeck"
+last-modified: 2025-09-16
+
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-depth: 2
+    number-sections: true
+    number-depth: 3
+editor: visual
+---
+
+
+# Getting Qiime 2024.5 via container
+
+## Setting up your `.bashrc` config for Apptainer
+
+Please have a look at the tutorial : [Using containers in SAGA](containers.qmd#initial-setup-to-be-able-to-use-containers-easily)
+
+
+## Example to get Quiime Amplicon pipeline working in SAGA
+
+
+```bash
+# download the container into an image (sif is the singularity format)
+cd $USERWORK
+mkdir images # if not done previously
+cd images
+apptainer pull qiime_amplicon.sif docker://quay.io/qiime2/amplicon:2024.5
+```
+
+Now, you need to create a command to make it more easy to use the container when you need it:
+Interactive work eg. for testing.
+
+Note: You need to ask ressources before starting the container.
+When the container is started, you see a new promt in your shell: `Apptainer>`.
+Now you can use that exactly as you did with a software that was installed eg. in conda. 
+
+```bash
+# ask for ressources eg
+srun --account=nn9305k --cpus-per-task=1 --mem=4G --qos=devel --time=0:30:00 --pty bash -i
+# create a command to work 
+IMG="/cluster/work/users/<username>/images/qiime_amplicon.sif"
+# this starts the container you will see change of prompt then
+apptainer shell $IMG
+qiime --h
+
+# do you analyses
+...
+
+# exit the container 
+exit 
+
+# to chancel your job 
+scancel <jobid> # OR scancel -u <username> eg. if you only have a job
+```
+
+<!--
+ Command to reproduce with apptainer 
+docker run -t -i -v $(pwd):/data quay.io/qiime2/amplicon:2024.5 qiime
+-v bind mount a volume
+-t allocate pseudo-TTY
+-i interactive (keep STDIN open even if not attached) 
+
+> should work ok in interactive then
+
+Possible options to add -f --compat for fakeroot and docker compatibility if problem
+-->
+
+If this worked, your container is now ready to use. 
+
+If you wish to use with a Slurm script, please see: [Using containers in SAGA](containers.qmd#using-containers-in-slurm-scripts)
+
+Let us know if you have some challenges, so we can help you find solutions.
