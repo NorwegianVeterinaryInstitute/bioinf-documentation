@@ -11,7 +11,10 @@ book:
     - part: "Part_2"
       chapters:
       - quarto_files/Part_2/dummy_document_2.qmd
-    - quarto_files/contributing.qmd
+    - part: "Saga & Nird"
+      - quarto_files/part_saga_nird/containers.qmd
+      - quarto_files/part_saga_nird/quiime2_docker.qmd
+    
 
 format:
   html:
