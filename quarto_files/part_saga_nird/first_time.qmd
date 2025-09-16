@@ -1,0 +1,20 @@
+# Setting up your account for working on saga
+
+There are a few settings we need to change to ensure that we all get a good
+working experience on saga.
+
+The instructions are to be found in this file:
+
+```/cluster/projects/nn9305k/samplefiles/new_user.txt```
+
+`ssh` into saga, and go to the samplefiles directory. Use `less` to open 
+the `new_user.txt` file. In order to do what is described in there, it 
+is simplest to open a second terminal and copy-paste the commands into
+the other terminal. The commands in question will primarily give you a
+terminal setup that adjust file permissions so that the core team can see
+your files. In addition, you are given access to the `conda` system which
+we use to give access to software, as well as the software we have available
+on the project area. 
+
+Please note, log out of both (or all if you have more) terminals right 
+after having doe these changes.

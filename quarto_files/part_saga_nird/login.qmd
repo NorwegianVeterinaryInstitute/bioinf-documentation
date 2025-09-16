@@ -1,0 +1,33 @@
+# How to log in to Saga
+
+Once you have your username and password, you need to log into Saga. To do that,
+you need to access something that is called a terminal. A terminal is a window
+into which you can type commands. There are three main ways to get to a terminal
+window:
+
+* Use the program putty (not recommended)
+* Use the program called `git bash` (recommended)
+* Use the [Windows Subsystem for Linux](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)(recommended for advanced users
+
+If you want to use putty
+
+* Use the [self-service portal for software](http://software.vetinst.no/)
+* Search for `putty` in the box, and click on the box. `putty` will now be installed
+* When PuTTY starts, type ```saga.sigma2.no``` in the textbox where it says "Host Name or IP address". 
+
+If you use `git bash`
+
+* Go to [this website](https://git-scm.com/downloads) and press `Download for Windows`
+* Click on `Click here to download` to get the latest version. It will now be downloaded.
+* Find the exe file that has been downloaded, and click on it. Click `Next` on all except for
+    * select `nano` as the default editor
+* Open git bash by typing `git bash` in the search bar - you will now have a terminal available
+* Type in the following command on the command line that appears:
+  ```ssh saga.sigma2.no```
+
+If you want to use the Windows Subsystem for Linux
+* Have IT install it for you
+* Ask IT to also install the [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701)
+* Click on the Windows Terminal Icon ![Screenshot 2021-08-23 140630](https://user-images.githubusercontent.com/77984068/130444354-13bb89ea-850d-4edb-83f1-f01a818a1e9e.png)
+* Type in the following command on the command line that appears:
+  ```ssh saga.sigma2.no```
