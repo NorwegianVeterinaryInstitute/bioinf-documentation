@@ -1,0 +1,49 @@
+# Getting an accont on Saga and NIRD
+
+Saga is the computing cluster that is frequently used for bioinformatics
+and other activities at the Institute.
+
+NIRD is a high capacity storage facility that is connected to Saga.
+
+In order to get an account on Saga and NIRD, you have to apply for an account.
+You gain access to the two machines trhough one account. This account does not 
+have anything to do with your Veterinary Institute account. Do not use the same 
+username or password for Saga as you do for your Institute account.
+
+## Computer names
+
+* Saga: saga.sigma2.no
+* NIRD: login.nird.sigma2.no
+
+### Apply for access
+
+If you are a first time user of Saga and NIRD, you need to apply to get access
+to it.
+
+* [Apply for access here](https://www.sigma2.no/how-apply-user-account)
+
+You will here create a new username to use for Saga. Create your own 7-8 letter 
+username from your first and last name. This is so that the core team can tell 
+who is who, that is not doable from VI usernames.
+
+In addition, you will have to fill in these fields:
+
+* Organization is Veterinærinstituttet.
+* Project is nn9305k
+* Resource is Saga.
+
+Your account will be approved by Sigma2 within a day or two, and then the
+allocation managers here at NVI are notified. The allocation manager(s)
+then approve your access. You will then have to set your password. Use the
+instructions in the link below to do that. NOTE: do not reuse either UiO
+or Vetinst passwords for your Saga account!
+
+If you are confused regarding passwords, this link will guide you on that
+
+* [About passwords, how to get one, and how to reset it](https://documentation.sigma2.no/getting_help/lost_forgotten_password.html)
+
+### Setting up your account for working on saga
+
+There are a few settings we need to change to ensure that we all get a good
+working experience on saga. Please read the other pages on this site to get 
+an overview of how to use the systems.
