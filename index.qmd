@@ -27,7 +27,7 @@ This quarto book contains the following:
 
 ## Saga and NIRD usage
 
-1. [Account on Saga/NIRD](quarto_files/part_saga_nird/external_tutorials.qmd)
+1. [Account on Saga/NIRD](quarto_files/part_saga_nird/account_saga.qmd)
 2. [Saga and NIRD data architecture][quarto_files/part_saga_nird/data_architecture.qmd]
 3. [First time on Saga]][quarto_files/part_saga_nird/first_time.qmd]
 4. [Logging in to Saga/NIRD]][quarto_files/part_saga_nird/login.qmd]
