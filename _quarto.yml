@@ -5,9 +5,9 @@ book:
   title: "Bioinformatics Documentation"
   chapters:
     - index.qmd
-    - part: "Part_1"
+    - part: "Saga and NIRD usage"
       chapters:
-      - quarto_files/Part_1/dummy_document_1.qmd
+      - quarto_files/part_saga_nird/account_saga.qmd
     - part: "Part_2"
       chapters:
       - quarto_files/Part_2/dummy_document_2.qmd
